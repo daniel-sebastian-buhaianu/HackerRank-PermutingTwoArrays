@@ -24,11 +24,10 @@ class Result {
 
     public static String twoArrays(int k, List<Integer> A, List<Integer> B) {
         A.sort(null);
-        int minB = Integer.MAX_VALUE;
+        B.sort(null);
         boolean solutionExists = true;
-        for (int i = 0, n = A.size(); solutionExists && i < n; i++) {
-            minB = Math.min(minB, B.get(i));
-            if (minB < (k - A.get(i))) {
+        for (int i = 0, n = A.size(); i < n && solutionExists; i++) {
+            if (B.get(i) < (k - A.get(n-i-1))) {
                 solutionExists = false;
             }
         }
