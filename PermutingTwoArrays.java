@@ -10,30 +10,23 @@ import java.util.stream.*;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
-class Result {
-
-    /*
-     * Complete the 'twoArrays' function below.
-     *
-     * The function is expected to return a STRING.
-     * The function accepts following parameters:
-     *  1. INTEGER k
-     *  2. INTEGER_ARRAY A
-     *  3. INTEGER_ARRAY B
-     */
-
-    public static String twoArrays(int k, List<Integer> A, List<Integer> B) {
-        A.sort(null);
-        B.sort(null);
-        boolean solutionExists = true;
-        for (int i = 0, n = A.size(); i < n && solutionExists; i++) {
-            if (B.get(i) < (k - A.get(n-i-1))) {
-                solutionExists = false;
+class Result
+{
+    public static String twoArrays(int k, List<Integer> A, List<Integer> B)
+    {
+        Collections.sort(A);
+        Collections.sort(B, Collections.reverseOrder());
+        
+        for (int i = 0, n = A.size(); i < n; i++)
+        {
+            if (A.get(i) + B.get(i) < k)
+            {
+                return "NO";
             }
         }
-        return solutionExists ? "YES" : "NO";
+        
+        return "YES";
     }
-
 }
 
 public class Solution {
